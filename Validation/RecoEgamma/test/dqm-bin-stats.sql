@@ -1,0 +1,22 @@
+    PRAGMA journal_mode=OFF;    PRAGMA count_changes=OFF;    DROP TABLE IF EXISTS files;    DROP TABLE IF EXISTS symbols;    DROP TABLE IF EXISTS mainrows;    DROP TABLE IF EXISTS children;    DROP TABLE IF EXISTS parents;    DROP TABLE IF EXISTS summary;    CREATE TABLE children (        self_id INTEGER CONSTRAINT self_exists REFERENCES mainrows(id),        parent_id INTEGER CONSTRAINT parent_exists REFERENCES mainrows(id),        from_parent_count INTEGER,        from_parent_calls INTEGER,        from_parent_paths INTEGER,        pct REAL    );    CREATE TABLE files (        id,        name TEXT    );    CREATE TABLE mainrows (        id INTEGER PRIMARY KEY,        symbol_id INTEGER CONSTRAINT symbol_id_exists REFERENCES symbols(id),        self_count INTEGER,        cumulative_count INTEGER,        kids INTEGER,        self_calls INTEGER,        total_calls INTEGER,        self_paths INTEGER,        total_paths INTEGER,        pct REAL    );    CREATE TABLE parents (        self_id INTEGER CONSTRAINT self_exists REFERENCES mainrows(id),        child_id INTEGER CONSTRAINT child_exists REFERENCES mainrows(id),        to_child_count INTEGER,        to_child_calls INTEGER,        to_child_paths INTEGER,        pct REAL    );    CREATE TABLE summary (        counter TEXT,        total_count INTEGER,        total_freq INTEGER,        tick_period REAL    );    CREATE TABLE symbols (        id,        name TEXT,        filename_id INTEGER CONSTRAINT file_id_exists REFERENCES files(id)    );    CREATE UNIQUE INDEX fileIndex ON files (id);    CREATE INDEX selfCountIndex ON mainrows(self_count);    CREATE UNIQUE INDEX symbolsIndex ON symbols (id);    CREATE INDEX totalCountIndex ON mainrows(cumulative_count);
+INSERT INTO files(id, name) VALUES(10,"root");
+INSERT INTO symbols(id, name, filename_id) VALUES (10,"root", 10);
+INSERT INTO symbols(id, name, filename_id) VALUES (15,"DQM", 10);
+INSERT INTO symbols(id, name, filename_id) VALUES (16,"TimerService", 15);
+INSERT INTO symbols(id, name, filename_id) VALUES (17,"EgammaV", 10);
+INSERT INTO symbols(id, name, filename_id) VALUES (18,"ElectronMcSignalValidator", 17);
+INSERT INTO mainrows(id, symbol_id, self_count, cumulative_count, kids, self_calls, total_calls, self_paths, total_paths, pct) VALUES(10,10,0,1335700, 0,245371,301811, 0, 503, 0);
+INSERT INTO summary(counter, total_count, total_freq, tick_period) VALUES ("BINS_LIVE",1335700,301811, 1);
+INSERT INTO mainrows(id, symbol_id, self_count, cumulative_count, kids, self_calls, total_calls, self_paths, total_paths, pct) VALUES(15, 15, 262400, 262400, 1, 24, 35600, 24, 24, 0.0);
+INSERT INTO mainrows(id, symbol_id, self_count, cumulative_count, kids, self_calls, total_calls, self_paths, total_paths, pct) VALUES(16, 16, 262400, 262400, 0, 24, 35600, 24, 24, 0.0);
+INSERT INTO parents(self_id, child_id, to_child_count, to_child_calls, to_child_paths, pct) VALUES(10,15,0,0,0,0);
+INSERT INTO parents(self_id, child_id, to_child_count, to_child_calls, to_child_paths, pct) VALUES(15,16,262400,35600,24,0);
+INSERT INTO children(self_id, parent_id, from_parent_count, from_parent_calls, from_parent_paths, pct) VALUES(15,10,262400,24,0,0);
+INSERT INTO children(self_id, parent_id, from_parent_count, from_parent_calls, from_parent_paths, pct) VALUES(16,15,262400,24,24,0);
+INSERT INTO mainrows(id, symbol_id, self_count, cumulative_count, kids, self_calls, total_calls, self_paths, total_paths, pct) VALUES(17, 17, 1073300, 1073300, 1, 245347, 266211, 479, 479, 0.0);
+INSERT INTO mainrows(id, symbol_id, self_count, cumulative_count, kids, self_calls, total_calls, self_paths, total_paths, pct) VALUES(18, 18, 1073300, 1073300, 0, 245347, 266211, 479, 479, 0.0);
+INSERT INTO parents(self_id, child_id, to_child_count, to_child_calls, to_child_paths, pct) VALUES(10,17,0,0,0,0);
+INSERT INTO parents(self_id, child_id, to_child_count, to_child_calls, to_child_paths, pct) VALUES(17,18,1073300,266211,479,0);
+INSERT INTO children(self_id, parent_id, from_parent_count, from_parent_calls, from_parent_paths, pct) VALUES(17,10,1073300,245347,0,0);
+INSERT INTO children(self_id, parent_id, from_parent_count, from_parent_calls, from_parent_paths, pct) VALUES(18,17,1073300,245347,479,0);
+

@@ -1,0 +1,7 @@
+file:${TEST_AFS_DIR}/RelValSingleElectronPt10-STARTUP-RECO.root
+file:${TEST_AFS_DIR}/RelValSingleElectronPt35-STARTUP-RECO.root
+file:${TEST_AFS_DIR}/RelValSingleElectronPt1000-STARTUP-RECO.root
+file:${TEST_AFS_DIR}/RelValTTbar-STARTUP-RECO.root
+file:${TEST_AFS_DIR}/RelValZEE-STARTUP-RECO.root
+file:${TEST_AFS_DIR}/RelValQCD_Pt_80_120-STARTUP-RECO.root
+file:${TEST_AFS_DIR}/electronMultiCl.root
