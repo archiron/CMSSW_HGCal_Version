@@ -68,8 +68,8 @@ then
 			CHOIX_CALCUL='Full'
 		else
 			echo "PILES PileUp"
-			list="TTbarStartup ZEEStartup"
-#			list="ZEEStartup"
+#			list="TTbarStartup ZEEStartup"
+			list="ZEEStartup"
 #			list="TTbarStartup"
 			for element in $list    
 			do   

@@ -6,8 +6,8 @@ import FWCore.ParameterSet.Config as cms
 from Configuration.StandardSequences.Eras import eras 
 
 #process = cms.Process("electronValidation")
-#process = cms.Process("electronPostValidation",eras.Run2_2017)
-process = cms.Process('electronPostValidation',eras.Phase2) 
+process = cms.Process("electronPostValidation",eras.Run2_2017)
+#process = cms.Process('electronPostValidation',eras.Phase2) 
 
 process.DQMStore = cms.Service("DQMStore")
 process.load("Validation.RecoEgamma.ElectronMcSignalPostValidator_cfi")
@@ -42,9 +42,9 @@ process.electronMcSignalPostValidator.OutputFolderName = cms.string("EgammaV/Ele
 
 from Configuration.AlCa.autoCond import autoCond
 #process.GlobalTag.globaltag = os.environ['TEST_GLOBAL_TAG']#+'::All'
-process.GlobalTag.globaltag = '93X_upgrade2023_realistic_v0'
+#process.GlobalTag.globaltag = '93X_upgrade2023_realistic_v0'
 #process.GlobalTag.globaltag = '93X_mc2017_realistic_v1'
-#process.GlobalTag.globaltag = '92X_upgrade2017_realistic_v10'
+process.GlobalTag.globaltag = '92X_upgrade2017_realistic_v10'
 
 process.dqmSaver.workflow = '/electronHistos/' + t1[1] + '/RECO3'
 process.dqmsave_step = cms.Path(process.DQMSaver)

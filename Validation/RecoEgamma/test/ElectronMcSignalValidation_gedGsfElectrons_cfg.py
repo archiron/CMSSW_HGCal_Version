@@ -7,8 +7,8 @@ import FWCore.ParameterSet.Config as cms
 from Configuration.StandardSequences.Eras import eras 
 
 #process = cms.Process("electronValidation")
-#process = cms.Process("electronValidation",eras.Run2_2017)
-process = cms.Process('electronValidation',eras.Phase2) 
+process = cms.Process("electronValidation",eras.Run2_2017)
+#process = cms.Process('electronValidation',eras.Phase2) 
 
 process.DQMStore = cms.Service("DQMStore")
 process.load("DQMServices.Components.DQMStoreStats_cfi")
@@ -39,9 +39,9 @@ process.load('Configuration.StandardSequences.FrontierConditions_GlobalTag_cff')
 
 from Configuration.AlCa.autoCond import autoCond
 #process.GlobalTag.globaltag = os.environ['TEST_GLOBAL_TAG']#+'::All'
-process.GlobalTag.globaltag = '93X_upgrade2023_realistic_v0'
+#process.GlobalTag.globaltag = '93X_upgrade2023_realistic_v0'
 #process.GlobalTag.globaltag = '93X_mc2017_realistic_v1'
-#process.GlobalTag.globaltag = '92X_upgrade2017_realistic_v10'
+process.GlobalTag.globaltag = '92X_upgrade2017_realistic_v10'
 
 # FOR DATA REDONE FROM RAW, ONE MUST HIDE IsoFromDeps
 # CONFIGURATION

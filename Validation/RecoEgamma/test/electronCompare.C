@@ -522,7 +522,7 @@ int electronCompare()
         denom_full = file_new_dir ; denom_full += denom.c_str() ;
         histo_new = DivideHistos(file_new,histo_new,num_full,denom_full) ;
        }
-      histo_new->SetLineColor(kRed) ;
+      histo_new->SetLineColor(kRed) ; //
       histo_new->SetMarkerColor(2) ;
       histo_new->SetLineWidth(3) ;
       RenderHisto(histo_new,canvas) ;
