@@ -9,17 +9,11 @@ print 'Argument List:', str(sys.argv)
 # first arg : cmsRun
 # second arg : name of the _cfg file
 # third arg : sample name (ex. ZEE_14)
-print "os.environ['DD_SAMPLE'] :", os.environ['DD_SAMPLE']
-if os.environ['DD_SAMPLE'] == '':
-    if ( len(sys.argv) > 2 ):
-        sampleName = str(sys.argv[2])
-        os.environ['DD_SAMPLE'] = 'RelVal' + sampleName
-        print 'Sample name:', sampleName, ' - ', os.environ['DD_SAMPLE']
-    else:
-        print '===================='
-        print 'no sample name, quit'
-        print '===================='
-        quit()
+
+from electronValidationCheck_Env import env
+cmsEnv = env() # be careful, cmsEnv != cmsenv. cmsEnv is local
+
+cmsEnv.checkSample() # check the sample value
 
 from Configuration.StandardSequences.Eras import eras 
 
@@ -31,44 +25,7 @@ process.load("DQMServices.Components.DQMStoreStats_cfi")
 from DQMServices.Components.DQMStoreStats_cfi import *
 dqmStoreStats.runOnEndJob = cms.untracked.bool(True)
 
-outputFile = 'electronHistos.Val' + os.environ['DD_SAMPLE'] + 'Startup_gedGsfE.root'
-os.environ['outputFile'] = outputFile
-
-from ElectronMcValidation_env import env
-cmsEnv = env() # be careful, cmsEnv != cmsenv. cmsEnv is local
-
-print '-----'
-print cmsEnv.dd_tier()
-print cmsEnv.tag_startup()
-print cmsEnv.data_version()
-print cmsEnv.test_global_tag()
-print cmsEnv.dd_cond()
-print '-----'
-
-if os.environ['DD_TIER'] == '':
-    os.environ['DD_TIER'] = cmsEnv.dd_tier() # 'GEN-SIM-RECO'
-if 'TAG_STARTUP' not in os.environ: # TAG_STARTUP from OvalFile
-    os.environ['TAG_STARTUP'] = cmsEnv.tag_startup() # '93X_upgrade2023_realistic_v0_D17PU200' 
-#elif os.environ['TAG_STARTUP'] == '':
-#    os.environ['TAG_STARTUP'] = cmsEnv.tag_startup() # '93X_upgrade2023_realistic_v0_D17PU200'
-if 'DATA_VERSION' not in os.environ: # DATA_VERSION from OvalFile
-#if os.environ['DATA_VERSION'] == '':
-    os.environ['DATA_VERSION'] = cmsEnv.data_version() # 'v1'
-if 'TEST_GLOBAL_TAG' not in os.environ: # TEST_GLOBAL_TAG from OvalFile
-#if os.environ['TEST_GLOBAL_TAG'] == '':
-    os.environ['TEST_GLOBAL_TAG'] = cmsEnv.test_global_tag() # os.environ['TAG_STARTUP']
-if os.environ['DD_COND'] == '':
-    os.environ['DD_COND'] = cmsEnv.dd_cond() # 'PU25ns_' + os.environ['TEST_GLOBAL_TAG'] + '-' + os.environ['DATA_VERSION']
-
-os.environ['DD_RELEASE'] = os.environ['CMSSW_VERSION']
-os.environ['DD_SOURCE'] = '/eos/cms/store/relval/' + os.environ['DD_RELEASE'] + '/' + os.environ['DD_SAMPLE'] + '/' + os.environ['DD_TIER'] + '/' + os.environ['DD_COND']
-
-print 'DD_RELEASE', os.environ['DD_RELEASE']
-print 'DD_SAMPLE', os.environ['DD_SAMPLE']
-print 'DD_COND', os.environ['DD_COND']
-print 'DD_TIER', os.environ['DD_TIER']
-print 'DD_SOURCE', os.environ['DD_SOURCE']
-print 'outputFile :', os.environ['outputFile']
+cmsEnv.checkValues()
 
 #max_skipped = 165
 max_number = 10 # -1 # number of events

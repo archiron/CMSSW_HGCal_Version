@@ -3,11 +3,16 @@ import sys
 import os
 import FWCore.ParameterSet.Config as cms
 
+from electronValidationCheck_Env import env
+cmsEnv = env() # be careful, cmsEnv != cmsenv. cmsEnv is local
+
+cmsEnv.checkSample() # check the sample value
+cmsEnv.checkValues()
+
 from Configuration.StandardSequences.Eras import eras 
 
-#process = cms.Process("electronValidation")
-process = cms.Process("electronPostValidation",eras.Run2_2017)
-#process = cms.Process('electronPostValidation',eras.Phase2) 
+#process = cms.Process("electronPostValidation",eras.Run2_2017)
+process = cms.Process('electronPostValidation',eras.Phase2) 
 
 process.DQMStore = cms.Service("DQMStore")
 process.load("Validation.RecoEgamma.ElectronMcSignalPostValidator_cfi")
@@ -29,10 +34,8 @@ dqmStoreStats.runOnEndJob = cms.untracked.bool(True)
 
 process.maxEvents = cms.untracked.PSet(input = cms.untracked.int32(1))
 
-t1 = os.environ['TEST_HISTOS_FILE'].split('.')
-#t1 = 'electronHistos.ValFullZEEStartup_13_gedGsfE_a.root'.split('.')
-localFileInput = os.environ['TEST_HISTOS_FILE'].replace(".root", "_a.root") #
-#localFileInput = 'electronHistos.ValFullZEEStartup_13_gedGsfE_a.root' #
+t1 = os.environ['inputPostFile'].split('.')
+localFileInput = os.environ['inputPostFile'].replace(".root", "_a.root") #
 # Source
 process.source = cms.Source ("PoolSource",fileNames = cms.untracked.vstring("file:" + localFileInput),
 secondaryFileNames = cms.untracked.vstring(),)
