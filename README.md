@@ -36,11 +36,13 @@ ZEE_14 is the DataSet sample.
 The step 1 produce a file named : electronHistos.ValZEE_14Startup_gedGsfE_a.root
 which is used as input in step2. Step 2 provide a file named : DQM_V0001_R000000001__electronHistos__RelValZEE_14Startup_gedGsfE__RECO3.root
 wich provides the histos.
-The choice between Phase2 (HGCal) and Run2_2017 (classical RECO) is made at the beginning of each _cfg file ( process = cms.Process(...) )
-In a same way, we write the GlobalTag in each _cfg file ( process.GlobalTag.globaltag = ... ).
+
+We write the GlobalTag in each _cfg file ( process.GlobalTag.globaltag = ... ).
 
 In order to simplify most of entry values, we use an additional file : electronValidationCheck_Env.py
-this file is used to fill some values one time only
+The choice between Phase2 (HGCal) and Run2_2017 (classical RECO) in _cfg file( process = cms.Process(...) ) is made in this additional file.
+This file is used to fill some values one time only.
+- beginTag : 'Phase2' or 'Run2_2017'
 - dd_tier : GEN-SIM-RECO, MINIAODSIM, GEN-SIM-DIGI-RECO, ...
 - tag_startup : the complete GlobalTag (for example 93X_upgrade2023_realistic_v0_D17PU200, where the GlobalTag is 93X_upgrade2023_realistic_v0).
 - data_version : v1, v2.
