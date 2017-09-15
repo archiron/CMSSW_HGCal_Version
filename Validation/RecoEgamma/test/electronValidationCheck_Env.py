@@ -16,6 +16,11 @@ class env:
                 print '===================='
                 quit()
 
+    def beginTag(self):
+	beginTag = 'Phase2'
+#	beginTag = 'Run2_2017'
+	return beginTag
+
     def dd_tier(self):
         dd_tier = 'GEN-SIM-RECO'
         return dd_tier 
@@ -45,7 +50,8 @@ class env:
         print self.dd_cond()
         print '-----'
         
-        if ( 'DD_TIER' not in os.environ ) or ( os.environ['DD_TIER'] == '' ):
+#        os.environ['beginTag'] = self.beginTag()
+	if ( 'DD_TIER' not in os.environ ) or ( os.environ['DD_TIER'] == '' ):
             os.environ['DD_TIER'] = self.dd_tier() # 'GEN-SIM-RECO'
         if 'TAG_STARTUP' not in os.environ: # TAG_STARTUP from OvalFile
             os.environ['TAG_STARTUP'] = self.tag_startup() # '93X_upgrade2023_realistic_v0_D17PU200' 
@@ -69,4 +75,5 @@ class env:
         print 'DD_SOURCE', os.environ['DD_SOURCE']
         print 'outputFile    :', os.environ['outputFile']
         print 'inputPostFile :', os.environ['inputPostFile']
-        
+        print 'beginTag : ', self.beginTag()
+ 

@@ -14,18 +14,18 @@ from electronValidationCheck_Env import env
 cmsEnv = env() # be careful, cmsEnv != cmsenv. cmsEnv is local
 
 cmsEnv.checkSample() # check the sample value
+cmsEnv.checkValues()
 
-from Configuration.StandardSequences.Eras import eras 
-
-#process = cms.Process("electronValidation",eras.Run2_2017)
-process = cms.Process('electronValidation',eras.Phase2) 
+if cmsEnv.beginTag == 'Run2_2017':
+    process = cms.Process("electronValidation",eras.Run2_2017)
+else:
+    from Configuration.StandardSequences.Eras import eras
+    process = cms.Process('electronValidation',eras.Phase2) 
 
 process.DQMStore = cms.Service("DQMStore")
 process.load("DQMServices.Components.DQMStoreStats_cfi")
 from DQMServices.Components.DQMStoreStats_cfi import *
 dqmStoreStats.runOnEndJob = cms.untracked.bool(True)
-
-cmsEnv.checkValues()
 
 #max_skipped = 165
 max_number = 10 # -1 # number of events
