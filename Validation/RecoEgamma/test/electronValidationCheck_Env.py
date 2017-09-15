@@ -58,7 +58,7 @@ class env:
 
         os.environ['DD_RELEASE'] = os.environ['CMSSW_VERSION']
         os.environ['DD_SOURCE'] = '/eos/cms/store/relval/' + os.environ['DD_RELEASE'] + '/' + os.environ['DD_SAMPLE'] + '/' + os.environ['DD_TIER'] + '/' + os.environ['DD_COND']
-        os.environ['outputFile'] = 'electronHistos.Val' + os.environ['DD_SAMPLE'] + 'Startup_gedGsfE.root'
+        os.environ['outputFile'] = 'electronHistos.' + os.environ['DD_SAMPLE'] + 'Startup_gedGsfE.root'
         if ( 'inputPostFile' not in os.environ ) or ( os.environ['inputPostFile'] == '' ):
             os.environ['inputPostFile'] = os.environ['outputFile']
         
