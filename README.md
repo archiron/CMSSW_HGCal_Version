@@ -30,13 +30,19 @@ II. Use
 
 RECO validations use 2 steps (analyze & finalize [5]). You can run it with :
 # step 1 - analyze
+
 cmsRun ElectronMcSignalValidation_gedGsfElectrons_cfg.py ZEE_14
+
 # step 2 - finalize
+
 cmsRun ElectronMcSignalPostValidation_cfg.py ZEE_14
 
 ZEE_14 is the DataSet sample.
+
 The step 1 produce a file named : electronHistos.ValZEE_14Startup_gedGsfE_a.root
-which is used as input in step2. Step 2 provide a file named : DQM_V0001_R000000001__electronHistos__RelValZEE_14Startup_gedGsfE__RECO3.root
+which is used as input in step2. Step 2 provide a file named :
+
+DQM_V0001_R000000001__electronHistos__RelValZEE_14Startup_gedGsfE__RECO3.root
 wich provides the histos.
 
 We write the GlobalTag in each _cfg file ( process.GlobalTag.globaltag = ... ).
@@ -63,7 +69,11 @@ the generated final root files are the SAME !
 ---- Notes
 
 [1] or other release you want. 
+
 [2] needed for scripts. It is here where you can modify ecalDrivenGsfElectronsFromMultiCl into ecalDrivenGsfElectrons in python/ElectronMcSignalValidator_gedGsfElectrons_cfi.py 
+
 [3] optionnal. Used for scripts/electronDataDiscovery.py with eos path. 
+
 [4] optionnal : used if there is some modifications with _Keep_ statements. 
+
 [5] Harvesting step
