@@ -61,8 +61,9 @@ BE CAREFUL : if you want to make comparison between ecalDrivenGsfElectronsFromMu
 the generated final root files are the SAME !
 
 ---- Notes
-[1] or other release you want.
-[2] needed for scripts. It is here where you can modify ecalDrivenGsfElectronsFromMultiCl into ecalDrivenGsfElectrons in python/ElectronMcSignalValidator_gedGsfElectrons_cfi.py
-[3] optionnal. Used for scripts/electronDataDiscovery.py with eos path.
-[4] optionnal : used if there is some modifications with _Keep_ statements.
+
+[1] or other release you want. 
+[2] needed for scripts. It is here where you can modify ecalDrivenGsfElectronsFromMultiCl into ecalDrivenGsfElectrons in python/ElectronMcSignalValidator_gedGsfElectrons_cfi.py 
+[3] optionnal. Used for scripts/electronDataDiscovery.py with eos path. 
+[4] optionnal : used if there is some modifications with _Keep_ statements. 
 [5] Harvesting step
