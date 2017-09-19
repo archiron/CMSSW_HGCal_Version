@@ -3,20 +3,20 @@ Dev version for HGCal
 
 This can be used from RECO files with _cfg files.
 
-## I. Installation
-# create release support
+# I. Installation
+## create release support
 cmsrel CMSSW_9_3_0_pre4 [1]
 cd CMSSW_9_3_0_pre4_TEST_01/src/
 cmsenv
 
-# add package
+## add package
 git cms-addpkg Validation/RecoEgamma [2]
 
 git cms-addpkg DQMOffline/EGamma [3]
 
 git cms-addpkg TrackingTools/Configuration [4]
 
-# add HGCal updates. MUST be added AFTER the originals !
+## add HGCal updates. MUST be added AFTER the originals !
 git remote add archiron https://github.com/archiron/CMSSW_HGCal_Version
 
 git fetch archiron
@@ -27,17 +27,17 @@ git checkout archiron/master  -- TrackingTools/Configuration/python [3]
 
 git checkout archiron/master  -- DQMOffline/EGamma [4]
 
-# compilation
+## compilation
 scramv1 b
 
-## II. Use
+# II. Use
 
 RECO validations use 2 steps (analyze & finalize [5]). You can run it with :
-# step 1 - analyze
+### step 1 - analyze
 
 cmsRun ElectronMcSignalValidation_gedGsfElectrons_cfg.py ZEE_14
 
-# step 2 - finalize
+### step 2 - finalize
 
 cmsRun ElectronMcSignalPostValidation_cfg.py ZEE_14
 
