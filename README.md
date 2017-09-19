@@ -18,9 +18,13 @@ git cms-addpkg TrackingTools/Configuration [4]
 
 ## add HGCal updates. MUST be added AFTER the originals !
 git remote add archiron https://github.com/archiron/CMSSW_HGCal_Version
+
 git fetch archiron
+
 git checkout archiron/master  -- Validation/RecoEgamma [2]
+
 git checkout archiron/master  -- TrackingTools/Configuration/python [3]
+
 git checkout archiron/master  -- DQMOffline/EGamma [4]
 
 ## compilation
@@ -37,13 +41,15 @@ cmsRun ElectronMcSignalValidation_gedGsfElectrons_cfg.py ZEE_14
 
 cmsRun ElectronMcSignalPostValidation_cfg.py ZEE_14
 
+# Some explanations
 ZEE_14 is the DataSet sample.
 
 The step 1 produce a file named : electronHistos.ValZEE_14Startup_gedGsfE_a.root
 which is used as input in step2. Step 2 provide a file named :
 
 DQM_V0001_R000000001__electronHistos__RelValZEE_14Startup_gedGsfE__RECO3.root
-wich provides the histos.
+
+This file provides the histos.
 
 We write the GlobalTag in each _cfg file ( process.GlobalTag.globaltag = ... ).
 
