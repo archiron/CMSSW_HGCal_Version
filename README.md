@@ -11,7 +11,9 @@ cmsenv
 
 ## add package
 git cms-addpkg Validation/RecoEgamma [2]
+
 git cms-addpkg DQMOffline/EGamma [3]
+
 git cms-addpkg TrackingTools/Configuration [4]
 
 ## add HGCal updates. MUST be added AFTER the originals !
