@@ -4,19 +4,19 @@ Dev version for HGCal
 This can be used from RECO files with _cfg files.
 
 # I. Installation
-## create release support
+### create release support
 cmsrel CMSSW_9_3_0_pre4 [1]
 cd CMSSW_9_3_0_pre4_TEST_01/src/
 cmsenv
 
-## add package
+### add package
 git cms-addpkg Validation/RecoEgamma [2]
 
 git cms-addpkg DQMOffline/EGamma [3]
 
 git cms-addpkg TrackingTools/Configuration [4]
 
-## add HGCal updates. MUST be added AFTER the originals !
+### add HGCal updates. MUST be added AFTER the originals !
 git remote add archiron https://github.com/archiron/CMSSW_HGCal_Version
 
 git fetch archiron
@@ -27,7 +27,7 @@ git checkout archiron/master  -- TrackingTools/Configuration/python [3]
 
 git checkout archiron/master  -- DQMOffline/EGamma [4]
 
-## compilation
+### compilation
 scramv1 b
 
 # II. Use
@@ -41,7 +41,7 @@ cmsRun ElectronMcSignalValidation_gedGsfElectrons_cfg.py ZEE_14
 
 cmsRun ElectronMcSignalPostValidation_cfg.py ZEE_14
 
-# Some explanations
+### Some explanations
 ZEE_14 is the DataSet sample.
 
 The step 1 produce a file named : electronHistos.ValZEE_14Startup_gedGsfE_a.root
@@ -72,7 +72,7 @@ This file is used to fill some values one time only.
 BE CAREFUL : if you want to make comparison between ecalDrivenGsfElectronsFromMultiCl and ecalDrivenGsfElectrons for example,
 the generated final root files are the SAME !
 
----- Notes
+# Notes
 
 [1] or other release you want. 
 
