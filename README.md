@@ -12,11 +12,9 @@ cmsenv
 </pre>
 
 ### add package
-git cms-addpkg Validation/RecoEgamma [2]
-
-git cms-addpkg DQMOffline/EGamma [3]
-
-git cms-addpkg TrackingTools/Configuration [4]
+<pre>git cms-addpkg Validation/RecoEgamma
+git cms-addpkg DQMOffline/EGamma
+git cms-addpkg TrackingTools/Configuration</pre>
 
 ### add HGCal updates. MUST be added AFTER the originals !
 git remote add archiron https://github.com/archiron/CMSSW_HGCal_Version
