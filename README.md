@@ -17,20 +17,23 @@ git cms-addpkg DQMOffline/EGamma
 git cms-addpkg TrackingTools/Configuration</pre>
 
 ### add HGCal updates. MUST be added AFTER the originals !
+<pre>
 git remote add archiron https://github.com/archiron/CMSSW_HGCal_Version
-
 git fetch archiron
-
 git checkout archiron/master  -- Validation/RecoEgamma <br />
 git checkout archiron/master  -- TrackingTools/Configuration/python <br />
 git checkout archiron/master  -- DQMOffline/EGamma <br />
+</pre>
 
 ### compilation
 scramv1 b
 
 # II. Use
 
-RECO validations use 2 steps (analyze & finalize [5]). You can run it with :
+RECO validations use 2 steps (analyze & finalize). You can run it with :
+
+cd Validation/RecoEgamma/test
+
 ### step 1 - analyze
 
 cmsRun ElectronMcSignalValidation_gedGsfElectrons_cfg.py ZEE_14
@@ -42,7 +45,7 @@ cmsRun ElectronMcSignalPostValidation_cfg.py ZEE_14
 ### Some explanations
 ZEE_14 is the DataSet sample.
 
-The step 1 produce a file named : electronHistos.ValZEE_14Startup_gedGsfE_a.root
+The step 1 produces a file named : electronHistos.ValZEE_14Startup_gedGsfE_a.root
 which is used as input in step2. Step 2 provide a file named :
 
 DQM_V0001_R000000001__electronHistos__RelValZEE_14Startup_gedGsfE__RECO3.root
@@ -70,14 +73,3 @@ This file is used to fill some values one time only.
 BE CAREFUL : if you want to make comparison between ecalDrivenGsfElectronsFromMultiCl and ecalDrivenGsfElectrons for example,
 the generated final root files are the SAME !
 
-# Notes
-
-[1] or other release you want. 
-
-[2] needed for scripts. It is here where you can modify ecalDrivenGsfElectronsFromMultiCl into ecalDrivenGsfElectrons in python/ElectronMcSignalValidator_gedGsfElectrons_cfi.py 
-
-[3] optionnal. Used for scripts/electronDataDiscovery.py with eos path. 
-
-[4] optionnal : used if there is some modifications with _Keep_ statements. 
-
-[5] Harvesting step
