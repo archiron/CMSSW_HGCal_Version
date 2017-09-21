@@ -5,9 +5,11 @@ This can be used from RECO files with _cfg files.
 
 # I. Installation
 ### create release support
-cmsrel CMSSW_9_3_0_pre4 [1]
+<pre>
+cmsrel CMSSW_9_3_0_pre4
 cd CMSSW_9_3_0_pre4_TEST_01/src/
 cmsenv
+</pre>
 
 ### add package
 git cms-addpkg Validation/RecoEgamma [2]
@@ -22,9 +24,7 @@ git remote add archiron https://github.com/archiron/CMSSW_HGCal_Version
 git fetch archiron
 
 git checkout archiron/master  -- Validation/RecoEgamma <br />
-
 git checkout archiron/master  -- TrackingTools/Configuration/python <br />
-
 git checkout archiron/master  -- DQMOffline/EGamma <br />
 
 ### compilation
