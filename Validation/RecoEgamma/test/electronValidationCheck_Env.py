@@ -27,6 +27,8 @@ class env:
 
     def tag_startup(self):
         tag_startup = '93X_upgrade2023_realistic_v0_D17PU200'
+#        tag_startup = '92X_upgrade2023_realistic_v2_2023D17noPU' 
+#        tag_startup = '93X_upgrade2023_realistic_v0_D17PU200'
         return tag_startup
 
     def data_version(self):
@@ -38,7 +40,8 @@ class env:
         return test_global_tag
 
     def dd_cond(self):
-        dd_cond = 'PU25ns_' + self.test_global_tag() + '-' + self.data_version()
+#        dd_cond = 'PU25ns_' + self.test_global_tag() + '-' + self.data_version() # PU
+	dd_cond = self.test_global_tag() + '-' + self.data_version()              # noPU
         return dd_cond
 
     def checkValues(self):
@@ -50,7 +53,8 @@ class env:
         print self.dd_cond()
         print '-----'
         
-#        os.environ['beginTag'] = self.beginTag()
+        os.environ['beginTag'] = self.beginTag()
+	
 	if ( 'DD_TIER' not in os.environ ) or ( os.environ['DD_TIER'] == '' ):
             os.environ['DD_TIER'] = self.dd_tier() # 'GEN-SIM-RECO'
         if 'TAG_STARTUP' not in os.environ: # TAG_STARTUP from OvalFile
@@ -63,6 +67,8 @@ class env:
             os.environ['DD_COND'] = self.dd_cond() # 'PU25ns_' + os.environ['TEST_GLOBAL_TAG'] + '-' + os.environ['DATA_VERSION']
 
         os.environ['DD_RELEASE'] = os.environ['CMSSW_VERSION']
+	#os.environ['DD_RELEASE'] = "CMSSW_9_3_0_pre3" 
+	
         os.environ['DD_SOURCE'] = '/eos/cms/store/relval/' + os.environ['DD_RELEASE'] + '/' + os.environ['DD_SAMPLE'] + '/' + os.environ['DD_TIER'] + '/' + os.environ['DD_COND']
         os.environ['outputFile'] = 'electronHistos.' + os.environ['DD_SAMPLE'] + 'Startup_gedGsfE.root'
         if ( 'inputPostFile' not in os.environ ) or ( os.environ['inputPostFile'] == '' ):
