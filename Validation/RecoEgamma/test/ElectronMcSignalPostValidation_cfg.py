@@ -9,8 +9,8 @@ cmsEnv = env() # be careful, cmsEnv != cmsenv. cmsEnv is local
 cmsEnv.checkSample() # check the sample value
 cmsEnv.checkValues()
 
-if cmsEnv.beginTag == 'Run2_2017':
-    process = cms.Process("electronValidation",eras.Run2_2017)
+if cmsEnv.beginTag() == 'Run2_2017':
+    process = cms.Process("electronPostValidation",eras.Run2_2017)
 else:
     from Configuration.StandardSequences.Eras import eras 
     process = cms.Process('electronPostValidation',eras.Phase2) 
