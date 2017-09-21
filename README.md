@@ -20,9 +20,9 @@ git cms-addpkg TrackingTools/Configuration</pre>
 <pre>
 git remote add archiron https://github.com/archiron/CMSSW_HGCal_Version
 git fetch archiron
-git checkout archiron/master  -- Validation/RecoEgamma <br />
-git checkout archiron/master  -- TrackingTools/Configuration/python <br />
-git checkout archiron/master  -- DQMOffline/EGamma <br />
+git checkout archiron/master  -- Validation/RecoEgamma
+git checkout archiron/master  -- TrackingTools/Configuration/python
+git checkout archiron/master  -- DQMOffline/EGamma
 </pre>
 
 ### compilation
