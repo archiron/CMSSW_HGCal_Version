@@ -21,11 +21,11 @@ git remote add archiron https://github.com/archiron/CMSSW_HGCal_Version
 
 git fetch archiron
 
-git checkout archiron/master  -- Validation/RecoEgamma [2]
+git checkout archiron/master  -- Validation/RecoEgamma <br />
 
-git checkout archiron/master  -- TrackingTools/Configuration/python [3]
+git checkout archiron/master  -- TrackingTools/Configuration/python <br />
 
-git checkout archiron/master  -- DQMOffline/EGamma [4]
+git checkout archiron/master  -- DQMOffline/EGamma <br />
 
 ### compilation
 scramv1 b
