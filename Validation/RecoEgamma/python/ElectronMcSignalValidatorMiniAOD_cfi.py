@@ -47,13 +47,13 @@ electronMcSignalValidatorMiniAOD = cms.EDAnalyzer("ElectronMcSignalValidatorMini
     isolationCfg = cms.PSet(electronPFIsolationCfg),
 )
 
-from Configuration.Eras.Modifier_phase2_hgcal_cff import phase2_hgcal
-phase2_hgcal.toModify(
-    electronMcSignalValidator,
-    electronCollection = 'ecalDrivenGsfElectronsFromMultiCl',
-    electronCoreCollection = 'ecalDrivenGsfElectronCoresFromMultiCl',
-    electronTrackCollection = 'electronGsfTracksFromMultiCl',
-    electronSeedCollection = 'electronMergedSeedsFromMultiCl',
+#from Configuration.Eras.Modifier_phase2_hgcal_cff import phase2_hgcal
+#phase2_hgcal.toModify(
+#    electronMcSignalValidator,
+#    electronCollection = 'ecalDrivenGsfElectronsFromMultiCl',
+#    electronCoreCollection = 'ecalDrivenGsfElectronCoresFromMultiCl',
+#    electronTrackCollection = 'electronGsfTracksFromMultiCl',
+#    electronSeedCollection = 'electronMergedSeedsFromMultiCl',
 #    MaxAbsEta = cms.double(3.0),
 #    histosCfg = dict( 
 #        Nbineta = 60 ,

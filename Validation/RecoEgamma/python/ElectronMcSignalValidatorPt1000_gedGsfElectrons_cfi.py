@@ -63,7 +63,7 @@ electronMcSignalValidatorPt1000 = cms.EDAnalyzer("ElectronMcSignalValidator",
 
 from Configuration.Eras.Modifier_phase2_hgcal_cff import phase2_hgcal
 phase2_hgcal.toModify(
-    electronMcSignalValidator,
+    electronMcSignalValidatorPt1000,
     electronCollection = 'ecalDrivenGsfElectronsFromMultiCl',
     electronCoreCollection = 'ecalDrivenGsfElectronCoresFromMultiCl',
     electronTrackCollection = 'electronGsfTracksFromMultiCl',
