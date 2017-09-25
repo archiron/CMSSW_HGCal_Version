@@ -58,7 +58,7 @@ electronMcFakeValidator = cms.EDAnalyzer("ElectronMcFakeValidator",
 
 from Configuration.Eras.Modifier_phase2_hgcal_cff import phase2_hgcal
 phase2_hgcal.toModify(
-    electronMcSignalValidator,
+    electronMcFakeValidator,
     electronCollection = 'ecalDrivenGsfElectronsFromMultiCl',
     electronCoreCollection = 'ecalDrivenGsfElectronCoresFromMultiCl',
     electronTrackCollection = 'electronGsfTracksFromMultiCl',
