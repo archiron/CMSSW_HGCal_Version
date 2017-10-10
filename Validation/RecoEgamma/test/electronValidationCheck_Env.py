@@ -26,13 +26,9 @@ class env:
         return dd_tier 
 
     def tag_startup(self):
-<<<<<<< HEAD
         tag_startup = '93X_upgrade2023_realistic_v2_2023D17noPU'
 #        tag_startup = '93X_upgrade2023_realistic_v2_2023D17PU140'
 #        tag_startup = '93X_upgrade2023_realistic_v0_D17PU200'
-=======
-        tag_startup = '93X_upgrade2023_realistic_v0_D17PU200'
->>>>>>> origin/master
 #        tag_startup = '92X_upgrade2023_realistic_v2_2023D17noPU' 
 #        tag_startup = '93X_upgrade2023_realistic_v0_D17PU200'
         return tag_startup
@@ -47,11 +43,7 @@ class env:
 
     def dd_cond(self):
 #        dd_cond = 'PU25ns_' + self.test_global_tag() + '-' + self.data_version() # PU
-<<<<<<< HEAD
         dd_cond = self.test_global_tag() + '-' + self.data_version()              # noPU
-=======
-	dd_cond = self.test_global_tag() + '-' + self.data_version()              # noPU
->>>>>>> origin/master
         return dd_cond
 
     def checkValues(self):
@@ -64,13 +56,8 @@ class env:
         print '-----'
         
         os.environ['beginTag'] = self.beginTag()
-<<<<<<< HEAD
 
         if ( 'DD_TIER' not in os.environ ) or ( os.environ['DD_TIER'] == '' ):
-=======
-	
-	if ( 'DD_TIER' not in os.environ ) or ( os.environ['DD_TIER'] == '' ):
->>>>>>> origin/master
             os.environ['DD_TIER'] = self.dd_tier() # 'GEN-SIM-RECO'
         if 'TAG_STARTUP' not in os.environ: # TAG_STARTUP from OvalFile
             os.environ['TAG_STARTUP'] = self.tag_startup() # '93X_upgrade2023_realistic_v0_D17PU200' 
@@ -84,11 +71,7 @@ class env:
         os.environ['DD_RELEASE'] = os.environ['CMSSW_VERSION']
 	#os.environ['DD_RELEASE'] = "CMSSW_9_3_0_pre3" 
 	
-<<<<<<< HEAD
         os.environ['DD_SOURCE'] = 'das' # '/eos/cms/store/relval/' + os.environ['DD_RELEASE'] + '/' + os.environ['DD_SAMPLE'] + '/' + os.environ['DD_TIER'] + '/' + os.environ['DD_COND']
-=======
-        os.environ['DD_SOURCE'] = '/eos/cms/store/relval/' + os.environ['DD_RELEASE'] + '/' + os.environ['DD_SAMPLE'] + '/' + os.environ['DD_TIER'] + '/' + os.environ['DD_COND']
->>>>>>> origin/master
         os.environ['outputFile'] = 'electronHistos.' + os.environ['DD_SAMPLE'] + 'Startup_gedGsfE.root'
         if ( 'inputPostFile' not in os.environ ) or ( os.environ['inputPostFile'] == '' ):
             os.environ['inputPostFile'] = os.environ['outputFile']
