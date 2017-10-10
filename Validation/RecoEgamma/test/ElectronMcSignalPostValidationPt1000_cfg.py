@@ -3,11 +3,17 @@ import sys
 import os
 import FWCore.ParameterSet.Config as cms
 
-from Configuration.StandardSequences.Eras import eras 
+from electronValidationCheck_Env import env
+cmsEnv = env() # be careful, cmsEnv != cmsenv. cmsEnv is local
 
-#process = cms.Process("electronValidation")
-#process = cms.Process("electronPostValidation",eras.Run2_2017)
-process = cms.Process('electronPostValidation',eras.Phase2) 
+cmsEnv.checkSample() # check the sample value
+cmsEnv.checkValues()
+
+if cmsEnv.beginTag() == 'Run2_2017':
+    process = cms.Process("electronPostValidation",eras.Run2_2017)
+else:
+    from Configuration.StandardSequences.Eras import eras 
+    process = cms.Process('electronPostValidation',eras.Phase2) 
 
 process.DQMStore = cms.Service("DQMStore")
 process.load("Validation.RecoEgamma.ElectronMcSignalPostValidatorPt1000_cfi")
@@ -29,8 +35,8 @@ dqmStoreStats.runOnEndJob = cms.untracked.bool(True)
 
 process.maxEvents = cms.untracked.PSet(input = cms.untracked.int32(1))
 
-t1 = os.environ['TEST_HISTOS_FILE'].split('.')
-localFileInput = os.environ['TEST_HISTOS_FILE'].replace(".root", "_a.root") #
+t1 = os.environ['inputPostFile'].split('.')
+localFileInput = os.environ['inputPostFile'].replace(".root", "_a.root") #
 # Source
 process.source = cms.Source ("PoolSource",fileNames = cms.untracked.vstring("file:" + localFileInput),
 secondaryFileNames = cms.untracked.vstring(),)
@@ -40,7 +46,8 @@ process.electronMcSignalPostValidatorPt1000.OutputFolderName = cms.string("Egamm
 
 from Configuration.AlCa.autoCond import autoCond
 #process.GlobalTag.globaltag = os.environ['TEST_GLOBAL_TAG']#+'::All'
-process.GlobalTag.globaltag = '93X_upgrade2023_realistic_v0'
+process.GlobalTag.globaltag = '93X_upgrade2023_realistic_v2'
+#process.GlobalTag.globaltag = '93X_upgrade2023_realistic_v0'
 #process.GlobalTag.globaltag = '93X_mc2017_realistic_v1'
 
 process.dqmSaver.workflow = '/electronHistos/' + t1[1] + '/RECO3'

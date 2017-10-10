@@ -114,9 +114,7 @@ else
 #	list="QcdPt80Pt120Startup_13 "
 #	list="Pt35Startup"
 #	list="TTbarStartup_13 "
-#	list="ZEEStartup_13 "
-#	list="ZEEStartup_14 " # HGCal
-	list="QCDPt15To7000Flat_14TeV " # HGCal
+	list="ZEEStartup_13 "
     for element in $list    
     do   
         echo "element =" $element   

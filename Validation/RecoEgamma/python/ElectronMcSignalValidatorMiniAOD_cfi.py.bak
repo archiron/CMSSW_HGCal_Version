@@ -61,4 +61,4 @@ electronMcSignalValidatorMiniAOD = cms.EDAnalyzer("ElectronMcSignalValidatorMini
 #        Etamin = -3.0 ,
 #        Etamax = 3.0 ,
 #    ),
-#)
+)

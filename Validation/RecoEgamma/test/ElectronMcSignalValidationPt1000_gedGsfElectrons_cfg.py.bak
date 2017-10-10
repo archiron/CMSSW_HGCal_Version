@@ -13,7 +13,7 @@ cmsEnv.checkValues()
 if cmsEnv.beginTag() == 'Run2_2017':
     process = cms.Process("electronValidation",eras.Run2_2017)
 else:
-    from Configuration.StandardSequences.Eras import eras 
+    from Configuration.StandardSequences.Eras import eras
     process = cms.Process('electronValidation',eras.Phase2) 
 
 process.DQMStore = cms.Service("DQMStore")
@@ -79,14 +79,13 @@ process.load('Configuration.StandardSequences.FrontierConditions_GlobalTag_cff')
 
 from Configuration.AlCa.autoCond import autoCond
 #process.GlobalTag.globaltag = os.environ['TEST_GLOBAL_TAG']#+'::All'
-process.GlobalTag.globaltag = '93X_upgrade2023_realistic_v2'
-#process.GlobalTag.globaltag = '93X_upgrade2023_realistic_v0'
+process.GlobalTag.globaltag = '93X_upgrade2023_realistic_v0'
 #process.GlobalTag.globaltag = '93X_mc2017_realistic_v1'
 
 # FOR DATA REDONE FROM RAW, ONE MUST HIDE IsoFromDeps
 # CONFIGURATION
 process.load("Validation.RecoEgamma.electronIsoFromDeps_cff")
-process.load("Validation.RecoEgamma.ElectronMcFakeValidator_gedGsfElectrons_cfi")
+process.load("Validation.RecoEgamma.ElectronMcSignalValidatorPt1000_gedGsfElectrons_cfi")
 
 # load DQM
 process.load("DQMServices.Core.DQM_cfg")
@@ -94,15 +93,13 @@ process.load("DQMServices.Components.DQMEnvironment_cfi")
 
 process.EDM = cms.OutputModule("PoolOutputModule",
 outputCommands = cms.untracked.vstring('drop *',"keep *_MEtoEDMConverter_*_*"),
-fileName = cms.untracked.string(os.environ['outputFile'].replace(".root", "_a.root"))
-#fileName = cms.untracked.string('electronHistos.ValFullZEEStartup_13_gedGsfE_a.root') # for local run only
+fileName = cms.untracked.string(os.environ['TEST_HISTOS_FILE'].replace(".root", "_a.root"))
 )
 
-process.electronMcFakeValidator.InputFolderName = cms.string("EgammaV/ElectronMcFakeValidator")
-process.electronMcFakeValidator.OutputFolderName = cms.string("EgammaV/ElectronMcFakeValidator")
+process.electronMcSignalValidatorPt1000.InputFolderName = cms.string("EgammaV/ElectronMcSignalValidatorPt1000")
+process.electronMcSignalValidatorPt1000.OutputFolderName = cms.string("EgammaV/ElectronMcSignalValidatorPt1000")
 
-#process.p = cms.Path(process.electronIsoFromDeps * process.electronMcFakeValidator * process.MEtoEDMConverter * process.dqmStoreStats)
-process.p = cms.Path(process.electronMcFakeValidator * process.MEtoEDMConverter * process.dqmStoreStats)
+process.p = cms.Path(process.electronMcSignalValidatorPt1000 * process.MEtoEDMConverter * process.dqmStoreStats)
 
 process.outpath = cms.EndPath(
 process.EDM,
