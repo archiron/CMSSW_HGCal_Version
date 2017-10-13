@@ -9,10 +9,10 @@ cmsEnv = env() # be careful, cmsEnv != cmsenv. cmsEnv is local
 cmsEnv.checkSample() # check the sample value
 cmsEnv.checkValues()
 
+from Configuration.StandardSequences.Eras import eras
 if cmsEnv.beginTag() == 'Run2_2017':
     process = cms.Process("electronPostValidation",eras.Run2_2017)
 else:
-    from Configuration.StandardSequences.Eras import eras 
     process = cms.Process('electronPostValidation',eras.Phase2) 
 
 process.DQMStore = cms.Service("DQMStore")

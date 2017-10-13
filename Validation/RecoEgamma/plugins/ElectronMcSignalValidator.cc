@@ -1610,7 +1610,7 @@ void ElectronMcSignalValidator::analyze( const edm::Event & iEvent, const edm::E
     h2_ele_outerPtVsPhi_mode->Fill(bestGsfElectron.phi(),  bestGsfElectron.trackMomentumOut().Rho() );
     h2_ele_outerPtVsPt_mode->Fill(bestGsfElectron.pt(),  bestGsfElectron.trackMomentumOut().Rho() );
 
-/*    if (!readAOD_) // track extra does not exist in AOD 
+    if (!readAOD_) // track extra does not exist in AOD 
      {
       edm::RefToBase<TrajectorySeed> seed = bestGsfElectron.gsfTrack()->extra()->seedRef();
       ElectronSeedRef elseed=seed.castTo<ElectronSeedRef>();
@@ -1645,7 +1645,7 @@ void ElectronMcSignalValidator::analyze( const edm::Event & iEvent, const edm::E
         h2_ele_seed_drz2posVsEta->Fill(bestGsfElectron.eta(), elseed->dRz2Pos());
         h2_ele_seed_drz2posVsPt->Fill(bestGsfElectron.pt(), elseed->dRz2Pos());
       }
-     } */ // removed for HGCal 2017-09-05
+     } // HGCal 2017-09-05
 
     // match distributions
     h1_ele_EoP->Fill( bestGsfElectron.eSuperClusterOverP() );

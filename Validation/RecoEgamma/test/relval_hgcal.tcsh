@@ -93,7 +93,7 @@ then
 		echo "FAST"
         list="TTbarStartup ZEEStartup"
 #	    list="ZEEStartup "
-#            list="TTbarStartup"
+#       list="TTbarStartup"
         for element in $list    
         do   
             echo "element =" $element   
@@ -108,15 +108,9 @@ then
 	fi
 else
     echo "FULL"
-#    list="Pt10Startup_UP15 Pt1000Startup_UP15 Pt35Startup_UP15 TTbarStartup_13 ZEEStartup_13 QcdPt80Pt120Startup_13"
-#    list="Pt10Startup Pt1000Startup Pt35Startup TTbarStartup_13 ZEEStartup_13 QcdPt80Pt120Startup_13"
-#	list="QcdPt80Pt120Startup_13 "
-#	list="Pt35Startup"
-#	list="TTbarStartup_13 "
-#	list="ZEEStartup_13 "
-#	list="ZEEStartup_14 " # HGCal
-	list="ZEE_14Startup QCDPt15To7000Flat_14TeVStartup Pt35ExtendedStartup " # HGCal
-#	list="QCDPt15To7000FlatStartup_14TeV " # HGCal
+#	list="ZEE_14 " # HGCal
+#	list="QCDPt15To7000Flat_14TeV " # HGCal
+	list="ZEE_14 QCD_Pt-15To7000_Flat_14TeV SingleElectronPt35Extended " # HGCal
     for element in $list    
     do   
         echo "element =" $element   

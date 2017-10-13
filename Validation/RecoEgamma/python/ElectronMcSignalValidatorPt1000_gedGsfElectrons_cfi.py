@@ -7,8 +7,7 @@ electronMcSignalHistosCfg = cms.PSet(
   Nbinpt = cms.int32(50), Nbinpt2D = cms.int32(50), Nbinpteff = cms.int32(19),Ptmax = cms.double(1500.0),
   Nbinfhits = cms.int32(30), Fhitsmax = cms.double(30.0),
   Nbinlhits = cms.int32(5), Lhitsmax = cms.double(10.0),
-#  Nbineta = cms.int32(50), Nbineta2D = cms.int32(50),Etamin = cms.double(-2.5), Etamax = cms.double(2.5),
-  Nbineta = cms.int32(60), Nbineta2D = cms.int32(60),Etamin = cms.double(-3.0), Etamax = cms.double(3.0),
+  Nbineta = cms.int32(50), Nbineta2D = cms.int32(50),Etamin = cms.double(-2.5), Etamax = cms.double(2.5),
   Nbindeta = cms.int32(100), Detamin = cms.double(-0.005), Detamax = cms.double(0.005), 
   Nbindetamatch = cms.int32(100), Nbindetamatch2D = cms.int32(50), Detamatchmin = cms.double(-0.05), Detamatchmax = cms.double(0.05),
   Nbinphi = cms.int32(64), Nbinphi2D = cms.int32(32), Phimin = cms.double(-3.2), Phimax = cms.double(3.2),
@@ -54,8 +53,7 @@ electronMcSignalValidatorPt1000 = cms.EDAnalyzer("ElectronMcSignalValidator",
   
   MaxPt = cms.double(1500.0),
   DeltaR = cms.double(0.05),
-#  MaxAbsEta = cms.double(2.5),
-  MaxAbsEta = cms.double(3.0),
+  MaxAbsEta = cms.double(2.5),
   MatchingID = cms.vint32(11,-11),
   MatchingMotherID = cms.vint32(23,24,-24,32),
   histosCfg = cms.PSet(electronMcSignalHistosCfg)
@@ -68,13 +66,13 @@ phase2_hgcal.toModify(
     electronCoreCollection = 'ecalDrivenGsfElectronCoresFromMultiCl',
     electronTrackCollection = 'electronGsfTracksFromMultiCl',
     electronSeedCollection = 'electronMergedSeedsFromMultiCl',
-#    MaxAbsEta = cms.double(3.0),
-#    histosCfg = dict( 
-#        Nbineta = 60 ,
-#        Nbineta2D = 60 ,
-#        Etamin = -3.0 ,
-#        Etamax = 3.0 ,
-#    ),
+    MaxAbsEta = cms.double(3.0),
+    histosCfg = dict( 
+        Nbineta = 60 ,
+        Nbineta2D = 60 ,
+        Etamin = -3.0 ,
+        Etamax = 3.0 ,
+    ),
 )
 
 

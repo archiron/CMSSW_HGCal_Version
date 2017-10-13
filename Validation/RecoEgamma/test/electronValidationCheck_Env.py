@@ -6,7 +6,7 @@ import os,sys
 class env:
     def checkSample(self):
         if ( 'DD_SAMPLE' not in os.environ ) or ( os.environ['DD_SAMPLE'] == '' ):
-            if ( len(sys.argv) > 2 ):
+            if ( len(sys.argv) > 2 ): # no else part since if sample does not exist, we had quit previously
                 sampleName = str(sys.argv[2])
                 os.environ['DD_SAMPLE'] = 'RelVal' + sampleName
                 print 'Sample name:', sampleName, ' - ', os.environ['DD_SAMPLE']
@@ -69,15 +69,21 @@ class env:
             os.environ['DD_COND'] = self.dd_cond() # 'PU25ns_' + os.environ['TEST_GLOBAL_TAG'] + '-' + os.environ['DATA_VERSION']
 
         os.environ['DD_RELEASE'] = os.environ['CMSSW_VERSION']
-	#os.environ['DD_RELEASE'] = "CMSSW_9_3_0_pre3" 
-	
-        os.environ['DD_SOURCE'] = 'das' # '/eos/cms/store/relval/' + os.environ['DD_RELEASE'] + '/' + os.environ['DD_SAMPLE'] + '/' + os.environ['DD_TIER'] + '/' + os.environ['DD_COND']
-        os.environ['outputFile'] = 'electronHistos.' + os.environ['DD_SAMPLE'] + 'Startup_gedGsfE.root'
+	    #os.environ['DD_RELEASE'] = "CMSSW_9_3_0_pre3" 
+
+        print '====='
+        if ( 'DD_SAMPLE_OUT' not in os.environ ) or ( os.environ['DD_SAMPLE_OUT'] == '' ):
+            os.environ['DD_SAMPLE_OUT'] = os.environ['DD_SAMPLE'].replace("RelVal", "ValFull")
+        print '====='
+
+        os.environ['DD_SOURCE'] = '/eos/cms/store/relval/' + os.environ['DD_RELEASE'] + '/' + os.environ['DD_SAMPLE'] + '/' + os.environ['DD_TIER'] + '/' + os.environ['DD_COND']
+        os.environ['outputFile'] = 'electronHistos.' + os.environ['DD_SAMPLE_OUT'] + '_gedGsfE.root'
         if ( 'inputPostFile' not in os.environ ) or ( os.environ['inputPostFile'] == '' ):
             os.environ['inputPostFile'] = os.environ['outputFile']
         
         print 'DD_RELEASE', os.environ['DD_RELEASE']
         print 'DD_SAMPLE', os.environ['DD_SAMPLE']
+        print 'DD_SAMPLE_OUT', os.environ['DD_SAMPLE_OUT']
         print 'DD_COND', os.environ['DD_COND']
         print 'DD_TIER', os.environ['DD_TIER']
         print 'DD_SOURCE', os.environ['DD_SOURCE']
